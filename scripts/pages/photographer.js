@@ -6,6 +6,7 @@ class Photographer {
   photographer;
   media;
   mediaFolder;
+  userLikes = [];
   photographMedia = document.querySelector('#photograph-media');
 
   constructor(id) {
@@ -17,7 +18,7 @@ class Photographer {
       this.generateHeader();
       this.generateMedia();
       this.generateFooter();
-      this.interactionHandler();
+      this.likesInteractionHandler();
     })();
   }
 
@@ -42,7 +43,7 @@ class Photographer {
    */
   generateMedia() {
     this.media.forEach(medium => {
-      const img_container = new Element('div', {}, '', this.photographMedia);
+      const img_container = new Element('div', { id : `media_${medium.id}`, class : "media"}, '', this.photographMedia);
 
       // TODO: a mettre dans une factory
       if (medium.image) new Element('img', { src: `assets/photographers_media/${this.mediaFolder}/${medium.image}` }, '', img_container);
@@ -54,23 +55,38 @@ class Photographer {
     });
   }
 
+  /**
+   * Génère le footer
+   */
   generateFooter() {
     const footer = document.querySelector("#photograph-footer");
     footer.textContent = this.photographer.price
   }
 
+  /**
+   * Trie les medias selon le paramètre souhaité
+   * @param {string} sort Type de trie
+   */
   sortMedia(sort) {
     document.querySelector('#photograph-media').innerHTML = null;
     this.media = PhotographerHelpers.SortMedia(this.media, sort);
     this.generateMedia();
   }
 
-  interactionHandler() {
+  /**
+   * Gestion des likes de l'utilisateur
+   */
+  likesInteractionHandler() {
     const likesCounter = document.querySelectorAll("#photograph-media .media-info .likes");
-    console.log(likesCounter)
     likesCounter.forEach(element => {
       element.addEventListener('click', () => {
-        console.log(element);
+        const id = element.closest('.media').id.replace("media_", "");
+        const medium = this.media.find(element => element.id === parseInt(id));
+        
+        this.userLikes.find(element => element.id === parseInt(id)) ? medium.likes-- : medium.likes++;
+        this.userLikes.find(element => element.id === parseInt(id)) ? this.userLikes.pop(medium) : this.userLikes.push(medium);
+        
+        element.textContent = medium.likes;
       });
     });
   }
