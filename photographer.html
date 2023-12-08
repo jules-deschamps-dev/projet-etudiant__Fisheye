@@ -13,9 +13,24 @@
     </header>
     <main id="main">
       <div class="photograph-header">
+        <div id="photographer-information"></div>
         <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+        <div id="photographer-img-container"></div>
       </div>
+      <div>
+        <label for="tri">Trié par:</label>
+        <select id="tri">
+          <option value="likes">Favori</option>
+          <option value="title">Titre</option>
+          <option value="date">Date</option>
+        </select>
+      </div>
+      
+      <div id="photograph-media"></div>
+      <div id="photograph-footer"></div>
     </main>
+
+
     <div id="contact_modal">
 			<div class="modal">
 				<header>
@@ -32,6 +47,11 @@
 			</div>
 		</div>
     <script type="module" src="/scripts/pages/photographer.js"></script>
+    <script type="module" src="/scripts/helpers/photographer.helper.js"></script>
     <script src="/scripts/utils/contactForm.js"></script>
+
+    <script>
+      
+    </script>
   </body>
 </html>

@@ -5,6 +5,7 @@ import Element from "./template.js";
  * Création de thumbnail de chaque photographe
  */
 class PhotographersTemplate {
+  // TODO: changer le constructeur en methode en static
   constructor(data, parent) {
     // destructuring
     const { name, portrait, id, country, city, tagline, price } = data;

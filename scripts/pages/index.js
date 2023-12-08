@@ -11,7 +11,8 @@ class Index {
       new PhotographersTemplate(photographer, document.querySelector(".photographer_section"));
     });
   }
-
 }
 
-Index.init();
+export default Index;
+
+//Index.init();
