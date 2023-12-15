@@ -1,5 +1,6 @@
+import Photographer from '../models/photographer.model.js';
 import PhotographersServices from '../services/photographers.services.js';
-import PhotographersTemplate from '../templates/photographer.template.js';
+import HomeTemplate from '../templates/home.template.js';
 
 class Index {
   /**
@@ -7,12 +8,11 @@ class Index {
    */
   static async init() {
     const photographers = await PhotographersServices.getPhotographers();
-    photographers.forEach((photographer) => {
-      new PhotographersTemplate(photographer, document.querySelector(".photographer_section"));
+    photographers.forEach((element) => {
+      const photographer = new Photographer(element);
+      new HomeTemplate(photographer);
     });
   }
 }
 
-export default Index;
-
-//Index.init();
+Index.init();

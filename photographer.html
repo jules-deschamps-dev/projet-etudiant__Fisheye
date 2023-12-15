@@ -9,7 +9,10 @@
   </head>
   <body>
     <header>
-      <img src="assets/images/logo.png" class="logo" />
+      <a href="/">
+
+        <img src="assets/images/logo.png" class="logo" />
+      </a>
     </header>
     <main id="main">
       <div class="photograph-header">
@@ -17,8 +20,8 @@
         <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
         <div id="photographer-img-container"></div>
       </div>
-      <div>
-        <label for="tri">Trié par:</label>
+      <div id = "sort-container">
+        <label for="tri">Trier par:</label>
         <select id="tri">
           <option value="likes">Favori</option>
           <option value="title">Titre</option>
@@ -27,20 +30,46 @@
       </div>
       
       <div id="photograph-media"></div>
-      <div id="photograph-footer"></div>
+      <div id="photograph-footer">
+        <div class="likes"></div>
+        <div class="price"></div>
+      </div>
     </main>
+
+    <div id="lightbox_modal">
+			<div id="lightbox">
+				<div id="chevron-left" class="chevron">precedent</div>
+        <div id="img-container">
+          <img src="" alt="">
+        </div>
+				<img id="close-lightbox" src="assets/icons/close.svg" />
+				<div id="chevron-right" class="chevron">suivant</div>
+			</div>
+		</div>
 
 
     <div id="contact_modal">
 			<div class="modal">
 				<header>
-          <h2>Contactez-moi</h2>
+          <h2></h2>
           <img src="assets/icons/close.svg" onclick="closeModal()" />
         </header>
 				<form>
 					<div>
 						<label>Prénom</label>
 						<input />
+					</div>
+					<div>
+						<label>Nom</label>
+						<input />
+					</div>
+					<div>
+						<label>Email</label>
+						<input />
+					</div>
+					<div>
+						<label>Votre message</label>
+            <textarea rows="3"></textarea>
 					</div>
           <button class="contact_button">Envoyer</button>
 				</form>
@@ -51,7 +80,8 @@
     <script src="/scripts/utils/contactForm.js"></script>
 
     <script>
-      
+      const lightbox = document.querySelector("#lightbox_modal")
+      lightbox.querySelector("#close-lightbox").addEventListener("click", () => lightbox.style.display = "none")
     </script>
   </body>
 </html>

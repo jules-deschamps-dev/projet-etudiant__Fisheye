@@ -1,28 +1,20 @@
-import Element from "./template.js";
+class PhotographerTemplate {
 
-/**
- * 
- * Création de thumbnail de chaque photographe
- */
-class PhotographersTemplate {
-  // TODO: changer le constructeur en methode en static
-  constructor(data, parent) {
-    // destructuring
-    const { name, portrait, id, country, city, tagline, price } = data;
+  constructor(photographer) {
+    console.log(photographer)
+    generateHeader(photographer);
+  }
 
-    // creation de la structure du template
-    const link = new Element('a', { href: `./photographer.html?id=${id}` }, '', parent);
-    const article = new Element('article', {}, '', link)
-    const img_container = new Element('div', { class: 'image-container' }, '', article);
-    const details = new Element('div', { class: 'details' }, '', article);
+  generateHeader(photographer) {
+    const photographer_information = document.querySelector('#photographer-information');
 
-    // ajout des éléments
-    new Element('img', { src: `assets/photographers/${portrait}` }, '', img_container);
-    new Element('h2', {}, name, details);
-    new Element('span', { class: 'localisation' }, `${city}, ${country}`, details);
-    new Element('span', { class: 'description' }, tagline, details);
-    new Element('span', { class: 'price' }, price, details);
+    new Element('h1', {}, photographer.name, photographer_information);
+    new Element('span', { class: 'localisation' }, photographer.city + ', ' + photographer.country, photographer_information);
+    new Element('span', { class: 'tagline' }, photographer.tagline, photographer_information);
+
+    const photographer_img_container = document.querySelector('#photographer-img-container');
+    new Element('img', { src: `assets/photographers/${photographer.portrait}` }, '', photographer_img_container)
   }
 }
 
-export default PhotographersTemplate;
+export default PhotographerTemplate;
