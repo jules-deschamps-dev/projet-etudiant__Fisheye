@@ -1,87 +1,121 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <link href="css/style.css" rel="stylesheet" type="text/css" />
-    <meta charset="utf-8">
-    <link rel="icon" type="image/png" href="assets/favicon.png">
-    <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
-    <title>Fisheye - photographe </title>
-  </head>
-  <body>
-    <header>
-      <a href="/">
+<html lang="fr">
 
-        <img src="assets/images/logo.png" class="logo" />
-      </a>
-    </header>
-    <main id="main">
-      <div class="photograph-header">
-        <div id="photographer-information"></div>
-        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
-        <div id="photographer-img-container"></div>
-      </div>
-      <div id = "sort-container">
-        <label for="tri">Trier par:</label>
-        <select id="tri">
-          <option value="likes">Favori</option>
-          <option value="title">Titre</option>
-          <option value="date">Date</option>
-        </select>
-      </div>
-      
-      <div id="photograph-media"></div>
-      <div id="photograph-footer">
-        <div class="likes"></div>
-        <div class="price"></div>
-      </div>
-    </main>
+<head>
+  <link href="css/style.css" rel="stylesheet" type="text/css" />
+  <meta charset="utf-8">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
+  <title>Fisheye - photographe </title>
+</head>
 
-    <div id="lightbox_modal">
-			<div id="lightbox">
-				<div id="chevron-left" class="chevron">precedent</div>
-        <div id="img-container">
-          <img src="" alt="">
+<body>
+  <header>
+    <a href="/">
+      <img src="assets/images/logo.png" alt="Fisheye Home Page"class="logo" />
+    </a>
+  </header>
+  <main id="main">
+    <div class="photograph-header">
+      <div id="photographer-information"></div>
+      <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+      <div id="photographer-img-container"></div>
+    </div>
+    <div id="sort-container">
+      <label for="tri">Trier par:</label>
+      <select id="tri">
+        <option value="likes">Favori</option>
+        <option value="title">Titre</option>
+        <option value="date">Date</option>
+      </select>
+    </div>
+
+    <div id="photograph-media"></div>
+    <div id="photograph-footer">
+      <div class="likes"></div>
+      <div class="price"></div>
+    </div>
+  </main>
+
+  <div id="lightbox_modal">
+    <div id="lightbox">
+      <img src="assets/icons/angle-left.svg" alt="Image précédente" id="chevron-left" class="chevron">
+      <div id="img-container">
+        <!--<img src="" alt="">-->
+      </div>
+      <img id="close-lightbox" src="assets/icons/close.svg" />
+      <img src="assets/icons/angle-right.svg" alt="Image suivante" id="chevron-right" class="chevron">
+    </div>
+  </div>
+
+
+  <div id="contact_modal">
+    <div class="modal">
+      <header>
+        <h2></h2>
+        <img src="assets/icons/close.svg" onclick="closeModal()" />
+      </header>
+      <form>
+        <div>
+          <label for="name">Prénom</label>
+          <input name="firstName"/>
         </div>
-				<img id="close-lightbox" src="assets/icons/close.svg" />
-				<div id="chevron-right" class="chevron">suivant</div>
-			</div>
-		</div>
+        <div>
+          <label>Nom</label>
+          <input name="lastName"/>
+        </div>
+        <div>
+          <label>Email</label>
+          <input name="email"/>
+        </div>
+        <div>
+          <label>Votre message</label>
+          <textarea name="message" rows="3"></textarea>
+        </div>
+        <button class="contact_button">Envoyer</button>
+      </form>
+    </div>
+  </div>
 
 
-    <div id="contact_modal">
-			<div class="modal">
-				<header>
-          <h2></h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
-        </header>
-				<form>
-					<div>
-						<label>Prénom</label>
-						<input />
-					</div>
-					<div>
-						<label>Nom</label>
-						<input />
-					</div>
-					<div>
-						<label>Email</label>
-						<input />
-					</div>
-					<div>
-						<label>Votre message</label>
-            <textarea rows="3"></textarea>
-					</div>
-          <button class="contact_button">Envoyer</button>
-				</form>
-			</div>
-		</div>
-    <script type="module" src="/scripts/pages/photographer.js"></script>
-    <script type="module" src="/scripts/helpers/photographer.helper.js"></script>
-    <script src="/scripts/utils/contactForm.js"></script>
+</body>
+<script src="/scripts/utils/contactForm.js"></script>
 
-    <script>
-      const lightbox = document.querySelector("#lightbox_modal")
-      lightbox.querySelector("#close-lightbox").addEventListener("click", () => lightbox.style.display = "none")
-    </script>
-  </body>
+<script>
+  const lightbox = document.querySelector("#lightbox_modal");
+  lightbox.querySelector("#close-lightbox").addEventListener("click", () => lightbox.style.display = "none");
+</script>
+
+<script type="module">
+  import Photographer from "./scripts/pages/photographer.js";
+</script>
+
+
+
+
+
+
+<script>
+  //TODO: à externaliser
+  document.addEventListener('DOMContentLoaded', function () {
+    const form = document.querySelector('#contact_modal form');
+
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      // Récupérez les valeurs des champs de formulaire
+      const firstName = form.querySelector('input[name="firstName"]').value;
+      const lastName = form.querySelector('input[name="lastName"]').value;
+      const email = form.querySelector('input[name="email"]').value;
+      const message = form.querySelector('textarea[name="message"]').value;
+
+      console.log('Prénom:', firstName);
+      console.log('Nom:', lastName);
+      console.log('Email:', email);
+      console.log('Message:', message);
+    });
+  });
+</script>
+
+
 </html>

@@ -18,10 +18,10 @@ class HomeTemplate {
 
     // ajout des éléments
     new Element('img', { src: `assets/photographers/${portrait}` }, '', img_container);
-    new Element('h2', {}, name, details);
-    new Element('span', { class: 'localisation' }, `${city}, ${country}`, details);
-    new Element('span', { class: 'description' }, tagline, details);
-    new Element('span', { class: 'price' }, price, details);
+    new Element('h2', {}, photographer.name, details);
+    new Element('span', { class: 'localisation' }, `${photographer.city}, ${photographer.country}`, details);
+    new Element('span', { class: 'description' }, photographer.tagline, details);
+    new Element('span', { class: 'price' }, photographer.price, details);
   }
 }
 

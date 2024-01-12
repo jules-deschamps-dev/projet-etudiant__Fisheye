@@ -271,6 +271,7 @@ form textarea {
 }
 
 #lightbox {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -294,8 +295,17 @@ form textarea {
 }
 
 #lightbox #close-lightbox{
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 15px;
   filter: invert(1);
 }
+
+#lightbox .chevron{
+  width: 30px;
+}
+
 
 
 @media (max-width: 1200px) {

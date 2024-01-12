@@ -3,7 +3,6 @@
  * Met à disposition les methodes de récupérations de données photographes
  */
 class PhotographersServices{
-  photographers;
 
   /**
    * Récupère la liste de tout les photographes
@@ -19,6 +18,8 @@ class PhotographersServices{
       return [];
     }
   }
+
+
 
   /**
    * Récupère les informations d'un photographe
@@ -40,6 +41,8 @@ class PhotographersServices{
       return null;
     }
   }
+
+  
 
   /**
    * Recupère tout les médias d'un photographe
